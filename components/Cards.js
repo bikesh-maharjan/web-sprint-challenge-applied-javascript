@@ -1,3 +1,4 @@
+import axios from "axios";
 // STEP 3: Create article cards.
 // -----------------------
 // Send an HTTP GET request to the following address: https://lambda-times-backend.herokuapp.com/articles
@@ -20,3 +21,57 @@
 // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
+
+function articleMaker(dataObject) {
+  const card = document.createElement("div");
+  const headline = document.createElement("div");
+  const author = document.createElement("div");
+  const imgContainer = document.createElement("div");
+  const imgAuthor = document.createElement("img");
+  const spanAuthor = document.createElement("name");
+
+  card.classList.add("card");
+  headline.classList.add("headline");
+  author.classList.add("author");
+  imgContainer.classList.add("img-container");
+  imgAuthor.setAttribute("src", dataObject.authorPhoto);
+
+  // text content
+  headline.textContent = dataObject.headline;
+  authorName.textContent = dataObject.authorName;
+
+  // appending the elements
+  card.appendChild(headline);
+  card.appendChild(author);
+  author.appendChild(imgContainer);
+  author.appendChild(authorName);
+  imgContainer.appendChild(spanAuthor);
+
+  card.addEventListener("click", () => {
+    console.log(dataObject.headline);
+
+    return card;
+  });
+
+  const divMainContainer = document.querySelector(".cards-container");
+
+  const articleData = "https://lambda-times-backend.herokuapp.com/articles";
+
+  axios
+    .get(articleData)
+    .then((response)=> {
+      console.log(response.data.articles);
+      const articleCard = response.data.articles
+      const entries = Object.entries(articles)
+
+      articleCard.forEach((subject) => {
+        subject[1].forEach((dataObject) => {
+          const newCard = articleMaker(dataObject);
+          divMainContainer.appendChild(newCard);
+        });
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
