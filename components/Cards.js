@@ -22,6 +22,9 @@
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
 const articleData = "https://lambda-times-backend.herokuapp.com/articles";
+ 
+
+// using asxios to get the date
 
 axios
   .get(articleData)
@@ -44,28 +47,33 @@ axios
   });
 
 function articleMaker(object) {
+
+    // creating elements
   const div = document.createElement("div");
-  div.classList.add("card");
-
   const div1 = document.createElement("div");
-  div1.classList.add("headline");
-  div1.innerHTML = object.headline;
-  div.appendChild(div1);
-
   const div2 = document.createElement("div");
-  div2.classList.add("author");
-  div.appendChild(div2);
-
   const div3 = document.createElement("div");
-  div3.classList.add("img-container");
-  div2.appendChild(div3);
-
   const img = document.createElement("img");
-  img.src = object.authorPhoto;
-  div3.appendChild(img);
-
   const span = document.createElement("span");
+
+    // adding class elements
+  div.classList.add("card");
+  div1.classList.add("headline");
+  div2.classList.add("author");
+  div3.classList.add("img-container");
+
+
+  // creating the text
+  div1.innerHTML = object.headline;
+  img.src = object.authorPhoto;
   span.innerHTML = "By " + object.authorName;
+
+
+    // appendint the elements
+  div.appendChild(div1);
+  div.appendChild(div2);
+  div2.appendChild(div3);
+  div3.appendChild(img);
   div2.appendChild(span);
 
   return div;
