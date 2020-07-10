@@ -22,3 +22,33 @@
     <div class="right-button"> > </div>
   </div>
 */
+const mainCarouselContainer = document.querySelector(".carousel-container");
+const errorContainer = document.querySelector(".errors-container");
+function carouselMaker() {
+  const carousel = document.createElement("div");
+  const leftButton = document.createElement("div");
+  const imgSrc1 = document.createElement("img");
+  const imgSrc2 = document.createElement("img");
+  const imgSrc3 = document.createElement("img");
+  const imgSrc4 = document.createElement("img");
+  const rightButton = document.createElement("div");
+
+  leftButton.textContent = "Click here!";
+  imgSrc1.setAttribute("src", "./assets/carousel/mountains.jpeg");
+  imgSrc2.setAttribute("src", "./assets/carousel/computer.jpeg");
+  imgSrc3.setAttribute("src", "./assets/carousel/trees.jpeg");
+  imgSrc4.setAttribute("src", "./assets/carousel/turntable.jpeg");
+  rightButton.textContent = "Click here!";
+
+  carousel.appendChild(leftButton);
+  carousel.appendChild(imgSrc1);
+  carousel.appendChild(imgSrc2);
+  carousel.appendChild(imgSrc3);
+  carousel.appendChild(imgSrc4);
+  carousel.appendChild(rightButton);
+
+  console.log(carousel);
+  return carousel;
+}
+
+mainCarouselContainer.appendChild(carouselMaker());

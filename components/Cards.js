@@ -33,8 +33,8 @@ axios
     const entries = Object.values(response.data.articles);
     // looping each array
     entries.forEach((element) => {
-      element.forEach((articles) => {
-        divMainContainer.appendChild(articleMaker(articles));
+      element.forEach((article) => {
+        divMainContainer.appendChild(articleMaker(article));
         console.log("Card Created");
       });
     });
@@ -70,6 +70,11 @@ function articleMaker(object) {
   div2.appendChild(div3);
   div3.appendChild(img);
   div2.appendChild(span);
+
+  // adding event Listener to the page
+  div.addEventListener("click", () => {
+    console.log(object.headline);
+  });
 
   return div;
 }

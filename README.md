@@ -43,7 +43,7 @@ An event listener is procedure or function in a computer that waits for an event
    It allows us to access other fuctions such as forEach and map.
 
 5) What is a component?
-   a componenet is made of several parts: html, css, or Javascript for website or application
+   a componenet is made of several parts: html, css, or Javascript for website or application. Function that is resuable. 
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
