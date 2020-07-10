@@ -22,7 +22,6 @@
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
 const articleData = "https://lambda-times-backend.herokuapp.com/articles";
- 
 
 // using asxios to get the date
 
@@ -31,12 +30,11 @@ axios
   .then((response) => {
     console.log(response);
     const divMainContainer = document.querySelector(".cards-container");
-
     const entries = Object.values(response.data.articles);
-
+    // looping each array
     entries.forEach((element) => {
-      element.forEach((article) => {
-        divMainContainer.appendChild(articleMaker(article));
+      element.forEach((articles) => {
+        divMainContainer.appendChild(articleMaker(articles));
         console.log("Card Created");
       });
     });
@@ -47,8 +45,7 @@ axios
   });
 
 function articleMaker(object) {
-
-    // creating elements
+  // creating elements
   const div = document.createElement("div");
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");
@@ -56,20 +53,18 @@ function articleMaker(object) {
   const img = document.createElement("img");
   const span = document.createElement("span");
 
-    // adding class elements
+  // adding class elements
   div.classList.add("card");
   div1.classList.add("headline");
   div2.classList.add("author");
   div3.classList.add("img-container");
-
 
   // creating the text
   div1.innerHTML = object.headline;
   img.src = object.authorPhoto;
   span.innerHTML = "By " + object.authorName;
 
-
-    // appendint the elements
+  // appendint the elements
   div.appendChild(div1);
   div.appendChild(div2);
   div2.appendChild(div3);

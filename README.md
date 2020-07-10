@@ -40,6 +40,7 @@ Event is triggered when the user does something on the webpage such as cliking t
 An event listener is procedure or function in a computer that waits for an event to happen.
 
 4. Why would we convert a NodeList into an Array?
+   It allows us to access other fuctions such as forEach and map.
 
 5) What is a component?
    a componenet is made of several parts: html, css, or Javascript for website or application
