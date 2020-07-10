@@ -12,6 +12,8 @@ import axios from "axios";
 //
 // NOTE: you do _not_ need to install axios as it's included in the HTML via script element
 
+// Creating Tabs
+
 const topics = "https://lambda-times-backend.herokuapp.com/topics";
 axios
   .get(topics)
