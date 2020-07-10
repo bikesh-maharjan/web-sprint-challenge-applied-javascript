@@ -1,4 +1,3 @@
-import axios from "axios";
 // STEP 3: Create article cards.
 // -----------------------
 // Send an HTTP GET request to the following address: https://lambda-times-backend.herokuapp.com/articles
@@ -22,56 +21,52 @@ import axios from "axios";
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
-function articleMaker(dataObject) {
-  const card = document.createElement("div");
-  const headline = document.createElement("div");
-  const author = document.createElement("div");
-  const imgContainer = document.createElement("div");
-  const imgAuthor = document.createElement("img");
-  const spanAuthor = document.createElement("name");
+const articleData = "https://lambda-times-backend.herokuapp.com/articles";
 
-  card.classList.add("card");
-  headline.classList.add("headline");
-  author.classList.add("author");
-  imgContainer.classList.add("img-container");
-  imgAuthor.setAttribute("src", dataObject.authorPhoto);
+axios
+  .get(articleData)
+  .then((response) => {
+    console.log(response);
+    const divMainContainer = document.querySelector(".cards-container");
 
-  // text content
-  headline.textContent = dataObject.headline;
-  authorName.textContent = dataObject.authorName;
+    const entries = Object.values(response.data.articles);
 
-  // appending the elements
-  card.appendChild(headline);
-  card.appendChild(author);
-  author.appendChild(imgContainer);
-  author.appendChild(authorName);
-  imgContainer.appendChild(spanAuthor);
+    entries.forEach((element) => {
+      element.forEach((article) => {
+        divMainContainer.appendChild(articleMaker(article));
+        console.log("Card Created");
+      });
+    });
+  })
 
-  card.addEventListener("click", () => {
-    console.log(dataObject.headline);
-
-    return card;
+  .catch(function (error) {
+    console.log(error);
   });
 
-  const divMainContainer = document.querySelector(".cards-container");
+function articleMaker(object) {
+  const div = document.createElement("div");
+  div.classList.add("card");
 
-  const articleData = "https://lambda-times-backend.herokuapp.com/articles";
+  const div1 = document.createElement("div");
+  div1.classList.add("headline");
+  div1.innerHTML = object.headline;
+  div.appendChild(div1);
 
-  axios
-    .get(articleData)
-    .then((response)=> {
-      console.log(response.data.articles);
-      const articleCard = response.data.articles
-      const entries = Object.entries(articles)
+  const div2 = document.createElement("div");
+  div2.classList.add("author");
+  div.appendChild(div2);
 
-      articleCard.forEach((subject) => {
-        subject[1].forEach((dataObject) => {
-          const newCard = articleMaker(dataObject);
-          divMainContainer.appendChild(newCard);
-        });
-      });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  const div3 = document.createElement("div");
+  div3.classList.add("img-container");
+  div2.appendChild(div3);
+
+  const img = document.createElement("img");
+  img.src = object.authorPhoto;
+  div3.appendChild(img);
+
+  const span = document.createElement("span");
+  span.innerHTML = "By " + object.authorName;
+  div2.appendChild(span);
+
+  return div;
 }
